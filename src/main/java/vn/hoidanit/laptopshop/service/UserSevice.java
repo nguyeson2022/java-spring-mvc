@@ -32,4 +32,12 @@ public class UserSevice {
         System.out.println(eric);
         return eric;
     }
+
+    public User getUserById(long id) {
+        return this.userRepository.findById(id);
+    }
+
+    public void deleteUser(long id) {
+        this.userRepository.deleteById(id);
+    }
 }
