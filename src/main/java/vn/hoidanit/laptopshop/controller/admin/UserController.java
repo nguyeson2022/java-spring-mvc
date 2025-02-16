@@ -8,20 +8,25 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
 import vn.hoidanit.laptopshop.domain.User;
 
 import org.springframework.ui.Model;
 
+import vn.hoidanit.laptopshop.service.UploadService;
 import vn.hoidanit.laptopshop.service.UserSevice;
 
 @Controller
 public class UserController {
 
     private final UserSevice userSevice;
+    private final UploadService uploadService;
 
-    public UserController(UserSevice userSevice) {
+    public UserController(UserSevice userSevice, UploadService uploadService) {
         this.userSevice = userSevice;
+        this.uploadService = uploadService;
 
     }
 
@@ -49,16 +54,20 @@ public class UserController {
         return "admin/user/detail";
     }
 
-    @RequestMapping("/admin/user/create")
+    @GetMapping("/admin/user/create")
     public String getCreateUserPage(Model model) {
         model.addAttribute("newUser", new User());
         return "admin/user/create";
     }
 
-    @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
-    public String createUserPage(Model model, @ModelAttribute("newUser") User hoidanit) {
+    @RequestMapping(value = "/admin/user/create")
+    public String createUserPage(Model model,
+            @ModelAttribute("newUser") User hoidanit,
+            @RequestParam("hoidanitFile") MultipartFile file) {
 
-        this.userSevice.handleSaveUser(hoidanit);
+        String avatar = this.uploadService.handleSaveUpLoadFile(file, "avatar");
+
+        // this.userSevice.handleSaveUser(hoidanit);
         return "redirect:/admin/user";
     }
 
