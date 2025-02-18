@@ -9,7 +9,7 @@
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
             <meta name="description" content="" />
             <meta name="author" content="" />
-            <title>Dashboard - SB Admin</title>
+            <title>Product - SB Admin</title>
             <link href="/css/styles.css" rel="stylesheet" />
             <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         </head>
@@ -30,8 +30,8 @@
                                 <div class="row">
                                     <div class="col-12 mx-auto">
                                         <div class="d-flex justify-content-between">
-                                            <h3>Table users</h3>
-                                            <a href="/admin/user/create" class="btn btn-primary">Create a user</a>
+                                            <h3>Table products</h3>
+                                            <a href="/admin/product/create" class="btn btn-primary">Create a product</a>
                                         </div>
 
                                         <hr />
@@ -39,12 +39,13 @@
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
-                                                    <th>Email</th>
-                                                    <th>Full Name</th>
+                                                    <th>Name</th>
+                                                    <th>Price</th>
+                                                    <th>Factory</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <!-- <tbody>
                                                 <c:forEach var="user" items="${users1}">
 
                                                     <tr>
@@ -65,7 +66,7 @@
                                                 </c:forEach>
 
 
-                                            </tbody>
+                                            </tbody> -->
                                         </table>
 
                                     </div>
