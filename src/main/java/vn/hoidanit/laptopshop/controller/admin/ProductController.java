@@ -52,11 +52,6 @@ public class ProductController {
             @ModelAttribute("newProduct") @Valid Product pr, BindingResult newProductBindingResult,
             @RequestParam("hoidanitFile") MultipartFile file) {
 
-        List<FieldError> errors = newProductBindingResult.getFieldErrors();
-        for (FieldError error : errors) {
-            System.out.println(">>>>>>" + error.getField() + " - " + error.getDefaultMessage());
-        }
-
         // validate
         if (newProductBindingResult.hasErrors()) {
             return "/admin/product/create";
