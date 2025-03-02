@@ -83,7 +83,7 @@ public class UserController {
             return "/admin/user/create";
         }
 
-        String avatar = this.uploadService.handleSaveUpLoadFile(file, "avatar");
+        String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
         String hashPassword = this.passwordEncoder.encode(hoidanit.getPassword());
 
         hoidanit.setAvatar(avatar);
@@ -124,9 +124,9 @@ public class UserController {
         return "admin/user/delete";
     }
 
-    @PostMapping("/admin/user/delete/{id}")
+    @PostMapping("/admin/user/delete")
     public String postDeleteUser(Model model, @ModelAttribute("newUser") User eric) {
-        this.userService.deleteUser(eric.getId());
+        this.userService.deleteAUser(eric.getId());
         return "redirect:/admin/user";
     }
 }

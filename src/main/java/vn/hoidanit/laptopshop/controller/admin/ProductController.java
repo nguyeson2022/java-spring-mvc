@@ -58,7 +58,7 @@ public class ProductController {
         }
 
         // upload image
-        String image = this.uploadService.handleSaveUpLoadFile(file, "product");
+        String image = this.uploadService.handleSaveUploadFile(file, "product");
 
         pr.setImage(image);
 
@@ -76,7 +76,7 @@ public class ProductController {
         return "admin/product/delete";
     }
 
-    @PostMapping("/admin/product/delete/{id}")
+    @PostMapping("/admin/product/delete")
     public String postDeleteProduct(Model model, @ModelAttribute("newProduct") Product pr) {
         this.productService.deleteProduct(pr.getId());
         return "redirect:/admin/product";
@@ -108,7 +108,7 @@ public class ProductController {
         if (currentProduct != null) {
             // update new image
             if (!file.isEmpty()) {
-                String img = this.uploadService.handleSaveUpLoadFile(file, "product");
+                String img = this.uploadService.handleSaveUploadFile(file, "product");
                 currentProduct.setImage(img);
             }
             currentProduct.setName(pr.getName());
