@@ -41,7 +41,85 @@
                             pointer-events: none;
                             background-color: var(--bs-pagination-disabled-bg);
                         }
+<<<<<<< HEAD
                     </style>
+=======
+
+                        .truncate-multiline {
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            /* Giới hạn 2 dòng */
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                        }
+                    </style>
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function () {
+                            const searchInput = document.getElementById("searchInput");
+                            const voiceSearchBtn = document.getElementById("voiceSearchBtn");
+
+                            if ('webkitSpeechRecognition' in window) {
+                                const recognition = new webkitSpeechRecognition();
+                                recognition.continuous = false;
+                                recognition.lang = 'vi-VN'; // Nhận diện tiếng Việt
+                                recognition.interimResults = false;
+                                recognition.maxAlternatives = 1;
+
+                                voiceSearchBtn.addEventListener("click", function () {
+                                    recognition.start();
+                                    voiceSearchBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>'; // Hiển thị loading
+                                });
+
+                                recognition.onresult = function (event) {
+                                    const transcript = event.results[0][0].transcript.trim().toLowerCase();
+                                    searchInput.value = transcript;
+                                    console.log("Bạn nói: " + transcript);
+
+                                    filterProducts(transcript); // Gọi ngay hàm lọc sản phẩm
+                                };
+
+                                recognition.onspeechend = function () {
+                                    recognition.stop();
+                                    voiceSearchBtn.innerHTML = '<i class="fas fa-microphone"></i>';
+                                };
+
+                                recognition.onerror = function (event) {
+                                    console.error("Lỗi nhận diện giọng nói:", event.error);
+                                    alert("Không thể nhận diện giọng nói, vui lòng thử lại.");
+                                    voiceSearchBtn.innerHTML = '<i class="fas fa-microphone"></i>';
+                                };
+                            } else {
+                                alert("Trình duyệt không hỗ trợ nhận diện giọng nói!");
+                            }
+                        });
+
+                        // Hàm lọc sản phẩm ngay trên trang
+                        function filterProducts(keyword) {
+                            let products = document.querySelectorAll('.product'); // Lấy danh sách sản phẩm
+                            let hasResult = false; // Kiểm tra xem có sản phẩm phù hợp không
+
+                            products.forEach(product => {
+                                let productName = product.getAttribute('data-name').toLowerCase();
+                                if (productName.includes(keyword)) {
+                                    product.style.display = "block"; // Hiển thị sản phẩm phù hợp
+                                    hasResult = true;
+                                } else {
+                                    product.style.display = "none"; // Ẩn sản phẩm không phù hợp
+                                }
+                            });
+
+                            // Hiển thị thông báo nếu không có sản phẩm phù hợp
+                            let resultMessage = document.getElementById("resultMessage");
+                            if (!hasResult) {
+                                resultMessage.innerText = `Không tìm thấy sản phẩm nào với từ khóa: "${keyword}"`;
+                                resultMessage.style.display = "block";
+                            } else {
+                                resultMessage.style.display = "none";
+                            }
+                        }
+
+                    </script>
+>>>>>>> 1e88762 (init)
                 </head>
 
                 <body>
@@ -68,7 +146,20 @@
                                         </ol>
                                     </nav>
                                 </div>
+<<<<<<< HEAD
 
+=======
+                                <!-- Form tìm kiếm -->
+                                <form id="searchForm" action="search.jsp" method="GET">
+                                    <div class="input-group">
+                                        <input type="text" id="searchInput" name="query" class="form-control"
+                                            placeholder="Tìm kiếm sản phẩm...">
+                                        <button type="button" id="voiceSearchBtn" class="btn btn-primary">
+                                            <i class="fas fa-microphone"></i>
+                                        </button>
+                                    </div>
+                                </form>
+>>>>>>> 1e88762 (init)
                                 <div class="row g-4 fruite">
                                     <div class="col-12 col-md-4">
                                         <div class="row g-4">
@@ -210,7 +301,11 @@
                                                 <div class="col-md-6 col-lg-4">
                                                     <div class="rounded position-relative fruite-item">
                                                         <div class="fruite-img">
+<<<<<<< HEAD
                                                             <img src="/images/product/${product.image}"
+=======
+                                                            <img src="${product.image}"
+>>>>>>> 1e88762 (init)
                                                                 class="img-fluid w-100 rounded-top" alt="">
                                                         </div>
                                                         <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
@@ -218,13 +313,21 @@
                                                         </div>
                                                         <div
                                                             class="p-4 border border-secondary border-top-0 rounded-bottom">
+<<<<<<< HEAD
                                                             <h4 style="font-size: 15px;">
+=======
+                                                            <h4 style="font-size: 15px;" class="truncate-multiline">
+>>>>>>> 1e88762 (init)
                                                                 <a href="/product/${product.id}">
                                                                     ${product.name}
                                                                 </a>
 
                                                             </h4>
+<<<<<<< HEAD
                                                             <p style="font-size: 13px;">
+=======
+                                                            <p style="font-size: 13px;" class="truncate-multiline">
+>>>>>>> 1e88762 (init)
                                                                 ${product.shortDesc}</p>
                                                             <div
                                                                 class="d-flex  flex-lg-wrap justify-content-center flex-column">

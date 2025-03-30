@@ -1,10 +1,18 @@
 package vn.hoidanit.laptopshop.service;
 
+<<<<<<< HEAD
+=======
+import java.util.ArrayList;
+>>>>>>> 1e88762 (init)
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+<<<<<<< HEAD
+=======
+import org.springframework.data.jpa.domain.Specification;
+>>>>>>> 1e88762 (init)
 import org.springframework.stereotype.Service;
 
 import jakarta.servlet.http.HttpSession;
@@ -14,11 +22,19 @@ import vn.hoidanit.laptopshop.domain.Order;
 import vn.hoidanit.laptopshop.domain.OrderDetail;
 import vn.hoidanit.laptopshop.domain.Product;
 import vn.hoidanit.laptopshop.domain.User;
+<<<<<<< HEAD
+=======
+import vn.hoidanit.laptopshop.domain.dto.ProductCriteriaDTO;
+>>>>>>> 1e88762 (init)
 import vn.hoidanit.laptopshop.repository.CartDetailRepository;
 import vn.hoidanit.laptopshop.repository.CartRepository;
 import vn.hoidanit.laptopshop.repository.OrderDetailRepository;
 import vn.hoidanit.laptopshop.repository.OrderRepository;
 import vn.hoidanit.laptopshop.repository.ProductRepository;
+<<<<<<< HEAD
+=======
+import vn.hoidanit.laptopshop.service.specification.ProductSpecs;
+>>>>>>> 1e88762 (init)
 
 @Service
 public class ProductService {
@@ -52,6 +68,71 @@ public class ProductService {
         return this.productRepository.findAll(page);
     }
 
+<<<<<<< HEAD
+=======
+    public Page<Product> fetchProductsWithSpec(Pageable page, ProductCriteriaDTO productCriteriaDTO) {
+        if (productCriteriaDTO.getTarget() == null
+                && productCriteriaDTO.getFactory() == null
+                && productCriteriaDTO.getPrice() == null) {
+            return this.productRepository.findAll(page);
+        }
+
+        Specification<Product> combinedSpec = Specification.where(null);
+
+        if (productCriteriaDTO.getTarget() != null && productCriteriaDTO.getTarget().isPresent()) {
+            Specification<Product> currentSpecs = ProductSpecs.matchListTarget(productCriteriaDTO.getTarget().get());
+            combinedSpec = combinedSpec.and(currentSpecs);
+        }
+        if (productCriteriaDTO.getFactory() != null && productCriteriaDTO.getFactory().isPresent()) {
+            Specification<Product> currentSpecs = ProductSpecs.matchListFactory(productCriteriaDTO.getFactory().get());
+            combinedSpec = combinedSpec.and(currentSpecs);
+        }
+
+        if (productCriteriaDTO.getPrice() != null && productCriteriaDTO.getPrice().isPresent()) {
+            Specification<Product> currentSpecs = this.buildPriceSpecification(productCriteriaDTO.getPrice().get());
+            combinedSpec = combinedSpec.and(currentSpecs);
+        }
+
+        return this.productRepository.findAll(combinedSpec, page);
+    }
+
+    // case 6
+    public Specification<Product> buildPriceSpecification(List<String> price) {
+        Specification<Product> combinedSpec = Specification.where(null); // disconjunction
+        for (String p : price) {
+            double min = 0;
+            double max = 0;
+
+            // Set the appropriate min and max based on the price range string
+            switch (p) {
+                case "duoi-10-trieu":
+                    min = 1;
+                    max = 10000000;
+                    break;
+                case "10-15-trieu":
+                    min = 10000000;
+                    max = 15000000;
+                    break;
+                case "15-20-trieu":
+                    min = 15000000;
+                    max = 20000000;
+                    break;
+                case "tren-20-trieu":
+                    min = 20000000;
+                    max = 200000000;
+                    break;
+            }
+
+            if (min != 0 && max != 0) {
+                Specification<Product> rangeSpec = ProductSpecs.matchMultiplePrice(min, max);
+                combinedSpec = combinedSpec.or(rangeSpec);
+            }
+        }
+
+        return combinedSpec;
+    }
+
+>>>>>>> 1e88762 (init)
     public Optional<Product> fetchProductById(long id) {
         return this.productRepository.findById(id);
     }
@@ -109,7 +190,11 @@ public class ProductService {
         }
     }
 
+<<<<<<< HEAD
     public Cart fecthByUser(User user) {
+=======
+    public Cart fetchByUser(User user) {
+>>>>>>> 1e88762 (init)
         return this.cartRepository.findByUser(user);
     }
 
@@ -146,6 +231,7 @@ public class ProductService {
                 this.cartDetailRepository.save(currentCartDetail);
             }
         }
+<<<<<<< HEAD
 
     }
 
@@ -161,6 +247,31 @@ public class ProductService {
             if (cartDetails != null) {
 
                 // create order
+=======
+    }
+
+    // 3. Modify your Service to handle selected items
+    public void handlePlaceOrder(
+            User user, HttpSession session,
+            String receiverName, String receiverAddress, String receiverPhone,
+            List<Long> selectedItemIds) {
+
+        // Step 1: get cart by user
+        Cart cart = this.cartRepository.findByUser(user);
+        if (cart != null) {
+            List<CartDetail> cartDetails = cart.getCartDetails();
+            List<CartDetail> selectedCartDetails = new ArrayList<>();
+
+            if (cartDetails != null && !selectedItemIds.isEmpty()) {
+                // Filter only selected cart details
+                for (CartDetail cd : cartDetails) {
+                    if (selectedItemIds.contains(cd.getId())) {
+                        selectedCartDetails.add(cd);
+                    }
+                }
+
+                // Create order with selected items only
+>>>>>>> 1e88762 (init)
                 Order order = new Order();
                 order.setUser(user);
                 order.setReceiverName(receiverName);
@@ -169,15 +280,25 @@ public class ProductService {
                 order.setStatus("PENDING");
 
                 double sum = 0;
+<<<<<<< HEAD
                 for (CartDetail cd : cartDetails) {
                     sum += cd.getPrice();
+=======
+                for (CartDetail cd : selectedCartDetails) {
+                    sum += cd.getPrice() * cd.getQuantity();
+>>>>>>> 1e88762 (init)
                 }
                 order.setTotalPrice(sum);
                 order = this.orderRepository.save(order);
 
+<<<<<<< HEAD
                 // create orderDetail
 
                 for (CartDetail cd : cartDetails) {
+=======
+                // Create orderDetail for selected items
+                for (CartDetail cd : selectedCartDetails) {
+>>>>>>> 1e88762 (init)
                     OrderDetail orderDetail = new OrderDetail();
                     orderDetail.setOrder(order);
                     orderDetail.setProduct(cd.getProduct());
@@ -187,6 +308,7 @@ public class ProductService {
                     this.orderDetailRepository.save(orderDetail);
                 }
 
+<<<<<<< HEAD
                 // step 2: delete cart_detail and cart
                 for (CartDetail cd : cartDetails) {
                     this.cartDetailRepository.deleteById(cd.getId());
@@ -199,5 +321,31 @@ public class ProductService {
             }
         }
 
+=======
+                // Delete only the selected cart details
+                for (CartDetail cd : selectedCartDetails) {
+                    this.cartDetailRepository.deleteById(cd.getId());
+                }
+
+                // Update the cart's cartDetails list to remove the selected items
+                cartDetails.removeAll(selectedCartDetails);
+
+                // If all items were selected, delete the cart
+                if (cartDetails.isEmpty()) {
+                    this.cartRepository.deleteById(cart.getId());
+                    session.setAttribute("sum", 0);
+                } else {
+                    // Save the updated cart with remaining items
+                    this.cartRepository.save(cart);
+
+                    int remainingQuantity = 0;
+                    for (CartDetail cd : cartDetails) {
+                        remainingQuantity += cd.getQuantity();
+                    }
+                    session.setAttribute("sum", remainingQuantity);
+                }
+            }
+        }
+>>>>>>> 1e88762 (init)
     }
 }

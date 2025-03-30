@@ -9,21 +9,35 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+<<<<<<< HEAD
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import vn.hoidanit.laptopshop.service.UserService;
+=======
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
+>>>>>>> 1e88762 (init)
 import vn.hoidanit.laptopshop.domain.Order;
 import vn.hoidanit.laptopshop.domain.Product;
 import vn.hoidanit.laptopshop.domain.User;
 import vn.hoidanit.laptopshop.domain.dto.RegisterDTO;
 import vn.hoidanit.laptopshop.service.OrderService;
 import vn.hoidanit.laptopshop.service.ProductService;
+<<<<<<< HEAD
 import org.springframework.web.bind.annotation.PostMapping;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+=======
+import vn.hoidanit.laptopshop.service.UserService;
+>>>>>>> 1e88762 (init)
 
 @Controller
 public class HomePageController {
@@ -47,9 +61,16 @@ public class HomePageController {
     @GetMapping("/")
     public String getHomePage(Model model) {
         // List<Product> products = this.productService.fetchProducts();
+<<<<<<< HEAD
         Pageable pageable = PageRequest.of(0, 10);
         Page<Product> prs = this.productService.fetchProducts(pageable);
         List<Product> products = prs.getContent();
+=======
+        Pageable pageable = PageRequest.of(0, 12);
+        Page<Product> prs = this.productService.fetchProducts(pageable);
+        List<Product> products = prs.getContent();
+
+>>>>>>> 1e88762 (init)
         model.addAttribute("products", products);
         return "client/homepage/show";
     }
@@ -61,12 +82,23 @@ public class HomePageController {
     }
 
     @PostMapping("/register")
+<<<<<<< HEAD
     public String handleRegister(@ModelAttribute("registerUser") @Valid RegisterDTO registerDTO,
             BindingResult bindingResult) {
+=======
+    public String handleRegister(
+            @ModelAttribute("registerUser") @Valid RegisterDTO registerDTO,
+            BindingResult bindingResult) {
+
+>>>>>>> 1e88762 (init)
         // validate
         if (bindingResult.hasErrors()) {
             return "client/auth/register";
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1e88762 (init)
         User user = this.userService.registerDTOtoUser(registerDTO);
 
         String hashPassword = this.passwordEncoder.encode(user.getPassword());
@@ -76,6 +108,10 @@ public class HomePageController {
         // save
         this.userService.handleSaveUser(user);
         return "redirect:/login";
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1e88762 (init)
     }
 
     @GetMapping("/login")
@@ -102,4 +138,8 @@ public class HomePageController {
 
         return "client/cart/order-history";
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1e88762 (init)
 }

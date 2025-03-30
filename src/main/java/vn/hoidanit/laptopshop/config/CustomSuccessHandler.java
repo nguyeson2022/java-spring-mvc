@@ -24,7 +24,10 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
 
     @Autowired
     private UserService userService;
+<<<<<<< HEAD
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
+=======
+>>>>>>> 1e88762 (init)
 
     protected String determineTargetUrl(final Authentication authentication) {
 
@@ -49,34 +52,63 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
             return;
         }
         session.removeAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
+<<<<<<< HEAD
 
         // get email
         String email = authentication.getName();
         // get user
         User user = this.userService.getUserByEmail(email);
         if (user != null) {
+=======
+        // get email
+        String email = authentication.getName();
+        // query user
+        User user = this.userService.getUserByEmail(email);
+        if (user != null) {
+            session.setAttribute("user", user);
+>>>>>>> 1e88762 (init)
             session.setAttribute("fullName", user.getFullName());
             session.setAttribute("avatar", user.getAvatar());
             session.setAttribute("id", user.getId());
             session.setAttribute("email", user.getEmail());
             int sum = user.getCart() == null ? 0 : user.getCart().getSum();
             session.setAttribute("sum", sum);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1e88762 (init)
         }
 
     }
 
+<<<<<<< HEAD
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
             Authentication authentication) throws IOException, ServletException {
         // TODO Auto-generated method stub
+=======
+    private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
+
+    @Override
+    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+            Authentication authentication) throws IOException, ServletException {
+
+>>>>>>> 1e88762 (init)
         String targetUrl = determineTargetUrl(authentication);
 
         if (response.isCommitted()) {
 
             return;
         }
+<<<<<<< HEAD
         redirectStrategy.sendRedirect(request, response, targetUrl);
         clearAuthenticationAttributes(request, authentication);
+=======
+
+        redirectStrategy.sendRedirect(request, response, targetUrl);
+        clearAuthenticationAttributes(request, authentication);
+
+>>>>>>> 1e88762 (init)
     }
 
 }

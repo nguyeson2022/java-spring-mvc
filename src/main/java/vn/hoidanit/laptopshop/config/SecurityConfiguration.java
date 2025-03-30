@@ -32,6 +32,7 @@ public class SecurityConfiguration {
     }
 
     @Bean
+<<<<<<< HEAD
     public DaoAuthenticationProvider authProvider(PasswordEncoder passwordEncoder,
             UserDetailsService userDetailsService) {
 
@@ -40,6 +41,15 @@ public class SecurityConfiguration {
         authProvider.setPasswordEncoder(passwordEncoder);
         authProvider.setHideUserNotFoundExceptions(false);
 
+=======
+    public DaoAuthenticationProvider authProvider(
+            PasswordEncoder passwordEncoder,
+            UserDetailsService userDetailsService) {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(userDetailsService);
+        authProvider.setPasswordEncoder(passwordEncoder);
+        // authProvider.setHideUserNotFoundExceptions(false);
+>>>>>>> 1e88762 (init)
         return authProvider;
     }
 
@@ -53,8 +63,13 @@ public class SecurityConfiguration {
         SpringSessionRememberMeServices rememberMeServices = new SpringSessionRememberMeServices();
         // optionally customize
         rememberMeServices.setAlwaysRemember(true);
+<<<<<<< HEAD
         return rememberMeServices;
 
+=======
+
+        return rememberMeServices;
+>>>>>>> 1e88762 (init)
     }
 
     @Bean
@@ -62,9 +77,18 @@ public class SecurityConfiguration {
         // v6. lamda
         http
                 .authorizeHttpRequests(authorize -> authorize
+<<<<<<< HEAD
                         .dispatcherTypeMatchers(DispatcherType.FORWARD, DispatcherType.INCLUDE).permitAll()
                         .requestMatchers("/", "/login",
                                 "product/**", "/client/**", "/css/**", "/js/**", "/images/**")
+=======
+                        .dispatcherTypeMatchers(DispatcherType.FORWARD,
+                                DispatcherType.INCLUDE)
+                        .permitAll()
+
+                        .requestMatchers("/", "/login", "/product/**", "/register", "/products/**",
+                                "/client/**", "/css/**", "/js/**", "/images/**")
+>>>>>>> 1e88762 (init)
                         .permitAll()
 
                         .requestMatchers("/admin/**").hasRole("ADMIN")
@@ -79,8 +103,12 @@ public class SecurityConfiguration {
 
                 .logout(logout -> logout.deleteCookies("JSESSIONID").invalidateHttpSession(true))
 
+<<<<<<< HEAD
                 .rememberMe(r -> r.rememberMeServices(
                         rememberMeServices()))
+=======
+                .rememberMe(r -> r.rememberMeServices(rememberMeServices()))
+>>>>>>> 1e88762 (init)
                 .formLogin(formLogin -> formLogin
                         .loginPage("/login")
                         .failureUrl("/login?error")

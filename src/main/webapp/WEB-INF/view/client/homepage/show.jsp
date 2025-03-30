@@ -1,6 +1,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<<<<<<< HEAD
         <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+=======
+        <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+>>>>>>> 1e88762 (init)
             <html lang="en">
 
             <head>
@@ -16,6 +20,7 @@
                     rel="stylesheet">
 
                 <!-- Icon Font Stylesheet -->
+<<<<<<< HEAD
                 <link rel="stylesheet"
                     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
@@ -23,6 +28,12 @@
                     rel="stylesheet">
 
 
+=======
+                <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+                    rel="stylesheet">
+
+>>>>>>> 1e88762 (init)
                 <!-- Libraries Stylesheet -->
                 <link href="/client/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
                 <link href="/client/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
@@ -34,7 +45,27 @@
                 <!-- Template Stylesheet -->
                 <link href="/client/css/style.css" rel="stylesheet">
 
+<<<<<<< HEAD
             </head>
+=======
+                <meta name="_csrf" content="${_csrf.token}" />
+                <!-- default header name is X-CSRF-TOKEN -->
+                <meta name="_csrf_header" content="${_csrf.headerName}" />
+
+                <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css"
+                    rel="stylesheet">
+
+            </head>
+            <style>
+                .truncate-multiline {
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;
+                    /* Giới hạn 2 dòng */
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                }
+            </style>
+>>>>>>> 1e88762 (init)
 
             <body>
 
@@ -45,6 +76,7 @@
                 </div>
                 <!-- Spinner End -->
 
+<<<<<<< HEAD
 
                 <jsp:include page="../layout/header.jsp" />
 
@@ -55,6 +87,16 @@
 
                 <jsp:include page="../layout/banner.jsp" />
 
+=======
+                <jsp:include page="../layout/header.jsp" />
+
+
+                <jsp:include page="../layout/banner.jsp" />
+
+
+
+
+>>>>>>> 1e88762 (init)
                 <!-- Fruits Shop Start-->
                 <div class="container-fluid fruite py-5">
                     <div class="container py-5">
@@ -66,6 +108,7 @@
                                 <div class="col-lg-8 text-end">
                                     <ul class="nav nav-pills d-inline-flex text-center mb-5">
                                         <li class="nav-item">
+<<<<<<< HEAD
                                             <a class="d-flex m-2 py-2 bg-light rounded-pill active"
                                                 data-bs-toggle="pill" href="#tab-1">
                                                 <span class="text-dark" style="width: 130px;">All Products</span>
@@ -95,6 +138,12 @@
                                             <span class="text-dark" style="width: 130px;">Meat</span>
                                         </a>
                                     </li> -->
+=======
+                                            <a class="d-flex m-2 py-2 bg-light rounded-pill active" href="/products">
+                                                <span class="text-dark" style="width: 130px;">All Products</span>
+                                            </a>
+                                        </li>
+>>>>>>> 1e88762 (init)
                                     </ul>
                                 </div>
                             </div>
@@ -107,13 +156,18 @@
                                                     <div class="col-md-6 col-lg-4 col-xl-3">
                                                         <div class="rounded position-relative fruite-item">
                                                             <div class="fruite-img">
+<<<<<<< HEAD
                                                                 <img src="/images/product/${product.image}"
+=======
+                                                                <img src="${product.image}"
+>>>>>>> 1e88762 (init)
                                                                     class="img-fluid w-100 rounded-top" alt="">
                                                             </div>
                                                             <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
                                                                 style="top: 10px; left: 10px;">Laptop</div>
                                                             <div
                                                                 class="p-4 border border-secondary border-top-0 rounded-bottom">
+<<<<<<< HEAD
                                                                 <h4 style="font-size: 15px;">
 
                                                                     <a href="/product/${product.id}">${product.name}</a>
@@ -136,6 +190,36 @@
                                                                             Add to
                                                                             cart</button>
                                                                     </form>
+=======
+                                                                <h4 style="font-size: 15px;" class="truncate-multiline">
+                                                                    <a href=" /product/${product.id}">
+                                                                        ${product.name}
+                                                                    </a>
+
+                                                                </h4>
+                                                                <p style="font-size: 13px;" class="truncate-multiline">
+                                                                    ${product.shortDesc}</p>
+                                                                <div
+                                                                    class="d-flex  flex-lg-wrap justify-content-center flex-column">
+                                                                    <p style="font-size: 15px; text-align: center; width: 100%;"
+                                                                        class="text-dark  fw-bold mb-3">
+                                                                        <fmt:formatNumber type="number"
+                                                                            value="${product.price}" /> đ
+                                                                    </p>
+                                                                    <!-- <form action="/add-product-to-cart/${product.id}"
+                                                                        method="post">
+                                                                        <input type="hidden"
+                                                                            name="${_csrf.parameterName}"
+                                                                            value="${_csrf.token}" /> -->
+
+                                                                    <button data-product-id="${product.id}"
+                                                                        class="btnAddToCartHomepage mx-auto btn border border-secondary rounded-pill px-3 text-primary">
+                                                                        <i
+                                                                            class="fa fa-shopping-bag me-2 text-primary"></i>
+                                                                        Add to cart
+                                                                    </button>
+                                                                    <!-- </form> -->
+>>>>>>> 1e88762 (init)
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -145,12 +229,16 @@
                                         </div>
                                     </div>
                                 </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1e88762 (init)
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- Fruits Shop End-->
+<<<<<<< HEAD
                 <jsp:include page="../layout/feature.jsp" />
 
 
@@ -163,6 +251,14 @@
 
 
 
+=======
+
+                <jsp:include page="../layout/feature.jsp" />
+
+                <jsp:include page="../layout/footer.jsp" />
+
+
+>>>>>>> 1e88762 (init)
                 <!-- Back to Top -->
                 <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i
                         class="fa fa-arrow-up"></i></a>
@@ -178,6 +274,11 @@
 
                 <!-- Template Javascript -->
                 <script src="/client/js/main.js"></script>
+<<<<<<< HEAD
+=======
+                <script
+                    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
+>>>>>>> 1e88762 (init)
             </body>
 
             </html>

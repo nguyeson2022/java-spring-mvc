@@ -66,8 +66,11 @@ public class Cart implements Serializable {
         this.cartDetails = cartDetails;
     }
 
+<<<<<<< HEAD
     public static long getSerialversionuid() {
         return serialVersionUID;
     }
 
+=======
+>>>>>>> 1e88762 (init)
 }

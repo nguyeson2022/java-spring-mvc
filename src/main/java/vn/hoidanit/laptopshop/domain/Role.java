@@ -1,5 +1,9 @@
 package vn.hoidanit.laptopshop.domain;
 
+<<<<<<< HEAD
+=======
+import java.io.Serializable;
+>>>>>>> 1e88762 (init)
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -11,7 +15,12 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "roles")
+<<<<<<< HEAD
 public class Role {
+=======
+public class Role implements Serializable {
+    private static final long serialVersionUID = 1L;
+>>>>>>> 1e88762 (init)
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +30,11 @@ public class Role {
 
     private String description;
 
+<<<<<<< HEAD
     // role - one => many - users
+=======
+    // role - one => many - users . ctrl + k . press 's'
+>>>>>>> 1e88762 (init)
     @OneToMany(mappedBy = "role")
     private List<User> users;
 

@@ -2,6 +2,7 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <!-- Navbar start -->
         <div class="container-fluid fixed-top">
+<<<<<<< HEAD
             <!-- <div class="container topbar bg-primary d-none d-lg-block">
         <div class="d-flex justify-content-between">
             <div class="top-info ps-2">
@@ -17,6 +18,8 @@
             </div>
         </div>
     </div> -->
+=======
+>>>>>>> 1e88762 (init)
             <div class="container px-0">
                 <nav class="navbar navbar-light bg-white navbar-expand-xl">
                     <a href="/" class="navbar-brand">
@@ -30,6 +33,7 @@
                         <div class="navbar-nav">
                             <a href="/" class="nav-item nav-link active">Trang Chủ</a>
                             <a href="/products" class="nav-item nav-link">Sản Phẩm</a>
+<<<<<<< HEAD
                             <!-- <a href="shop-detail.html" class="nav-item nav-link">Shop Detail</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
@@ -46,11 +50,21 @@
                             <c:if test="${not empty pageContext.request.userPrincipal}">
 
 
+=======
+
+                        </div>
+                        <div class="d-flex m-3 me-0">
+                            <c:if test="${not empty pageContext.request.userPrincipal}">
+>>>>>>> 1e88762 (init)
                                 <a href="/cart" class="position-relative me-4 my-auto">
                                     <i class="fa fa-shopping-bag fa-2x"></i>
                                     <span
                                         class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1"
+<<<<<<< HEAD
                                         style="top: -5px; left: 15px; height: 20px; min-width: 20px;">
+=======
+                                        style="top: -5px; left: 15px; height: 20px; min-width: 20px;" id="sumCart">
+>>>>>>> 1e88762 (init)
                                         ${sessionScope.sum}
                                     </span>
                                 </a>
@@ -67,12 +81,20 @@
                                                 src="/images/avatar/${sessionScope.avatar}" />
                                             <div class="text-center my-3">
                                                 <c:out value="${sessionScope.fullName}" />
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1e88762 (init)
                                             </div>
                                         </li>
 
                                         <li><a class="dropdown-item" href="#">Quản lý tài khoản</a></li>
+<<<<<<< HEAD
                                         <li><a class="dropdown-item" href="#">Lịch sử mua hàng</a></li>
+=======
+
+                                        <li><a class="dropdown-item" href="/order-history">Lịch sử mua hàng</a></li>
+>>>>>>> 1e88762 (init)
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>
@@ -80,6 +102,7 @@
                                             <form method="post" action="/logout">
                                                 <input type="hidden" name="${_csrf.parameterName}"
                                                     value="${_csrf.token}" />
+<<<<<<< HEAD
                                                 <button class="dropdown-item">Đăng xuất</a>
                                             </form>
 
@@ -91,6 +114,18 @@
                             </c:if>
                             <c:if test="${ empty pageContext.request.userPrincipal}">
                                 <a href="/login" class="position-relative me-4 my-auto">Đăng nhập</a>
+=======
+                                                <button class="dropdown-item">Đăng xuất</button>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </c:if>
+                            <c:if test="${empty pageContext.request.userPrincipal}">
+                                <a href="/login" class="a-login position-relative me-4 my-auto">
+                                    Đăng nhập
+                                </a>
+>>>>>>> 1e88762 (init)
                             </c:if>
                         </div>
                     </div>

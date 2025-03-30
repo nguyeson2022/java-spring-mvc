@@ -64,6 +64,10 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
+<<<<<<< HEAD
+=======
+                                            <th scope="col">Chọn</th>
+>>>>>>> 1e88762 (init)
                                             <th scope="col">Sản phẩm</th>
                                             <th scope="col">Tên</th>
                                             <th scope="col">Giá cả</th>
@@ -82,15 +86,35 @@
                                         <c:forEach var="cartDetail" items="${cartDetails}">
 
                                             <tr>
+<<<<<<< HEAD
                                                 <th scope="row">
                                                     <div class="d-flex align-items-center">
                                                         <img src="/images/product/${cartDetail.product.image}"
+=======
+                                                <td>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            value="${cartDetail.id}" id="checkbox-${cartDetail.id}"
+                                                            name="itemCheckbox" checked onclick="updateSelectedItems()">
+                                                        <label class="form-check-label" for="checkbox-${cartDetail.id}">
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                                <th scope="row">
+                                                    <div class="d-flex align-items-center">
+                                                        <img src="${cartDetail.product.image}"
+>>>>>>> 1e88762 (init)
                                                             class="img-fluid me-5 rounded-circle"
                                                             style="width: 80px; height: 80px;" alt="">
                                                     </div>
                                                 </th>
                                                 <td>
+<<<<<<< HEAD
                                                     <p class="mb-0 mt-4">
+=======
+                                                    <p class="mb-0 mt-4 text-truncate"
+                                                        style="width: 270px; white-space: nowrap; overflow: hidden;">
+>>>>>>> 1e88762 (init)
                                                         <a href="/product/${cartDetail.product.id}" target="_blank">
                                                             ${cartDetail.product.name}
                                                         </a>
@@ -109,7 +133,13 @@
                                                     </div>
                                                 </td>
                                                 <td>
+<<<<<<< HEAD
                                                     <p class="mb-0 mt-4" data-cart-detail-id="${cartDetail.id}">
+=======
+                                                    <p class="mb-0 mt-4 item-total"
+                                                        data-cart-detail-id="${cartDetail.id}"
+                                                        data-price="${cartDetail.price * cartDetail.quantity}">
+>>>>>>> 1e88762 (init)
                                                         <fmt:formatNumber type="number"
                                                             value="${cartDetail.price * cartDetail.quantity}" /> đ
                                                     </p>
@@ -123,6 +153,10 @@
                             <c:if test="${not empty cartDetails}">
                                 <form:form action="/place-order" method="post" modelAttribute="cart">
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+<<<<<<< HEAD
+=======
+                                    <input type="hidden" id="selectedItems" name="selectedItems" value="" />
+>>>>>>> 1e88762 (init)
                                     <div class="mt-5 row g-4 justify-content-start">
                                         <div class="col-12 col-md-6">
                                             <div class="p-4 ">
@@ -171,12 +205,21 @@
                                                 <div
                                                     class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
                                                     <h5 class="mb-0 ps-4 me-4">Tổng số tiền</h5>
+<<<<<<< HEAD
                                                     <p class="mb-0 pe-4" data-cart-total-price="${totalPrice}">
+=======
+                                                    <p class="mb-0 pe-4" id="totalPrice"
+                                                        data-cart-total-price="${totalPrice}">
+>>>>>>> 1e88762 (init)
                                                         <fmt:formatNumber type="number" value="${totalPrice}" /> đ
                                                     </p>
                                                 </div>
 
+<<<<<<< HEAD
                                                 <button
+=======
+                                                <button id="submitButton"
+>>>>>>> 1e88762 (init)
                                                     class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4">
                                                     Xác nhận thanh toán
                                                 </button>
@@ -210,6 +253,56 @@
 
                     <!-- Template Javascript -->
                     <script src="/client/js/main.js"></script>
+<<<<<<< HEAD
+=======
+
+                    <!-- Checkbox Selection Script -->
+                    <script>
+                        function updateSelectedItems() {
+                            // Get all checked checkboxes
+                            var checkboxes = document.querySelectorAll('input[name="itemCheckbox"]:checked');
+
+                            // Create a comma-separated list of selected item IDs
+                            var selectedIds = Array.from(checkboxes).map(cb => cb.value).join(',');
+
+                            // Update the hidden field with selected IDs
+                            document.getElementById('selectedItems').value = selectedIds;
+
+                            // Calculate total price based on selected items
+                            var total = 0;
+                            checkboxes.forEach(function (checkbox) {
+                                var row = checkbox.closest('tr');
+                                var priceElement = row.querySelector('.item-total');
+                                var price = parseFloat(priceElement.getAttribute('data-price'));
+                                total += price;
+                            });
+
+                            // Update total price display
+                            var totalPriceElement = document.getElementById('totalPrice');
+                            totalPriceElement.textContent = formatCurrency(total) + ' đ';
+
+                            // Disable submit button if no items selected
+                            document.getElementById('submitButton').disabled = checkboxes.length === 0;
+                        }
+
+                        // Format number as currency
+                        function formatCurrency(amount) {
+                            return new Intl.NumberFormat('vi-VN').format(amount);
+                        }
+
+                        // Initialize on page load
+                        document.addEventListener('DOMContentLoaded', function () {
+                            // Check all checkboxes by default
+                            var checkboxes = document.querySelectorAll('input[name="itemCheckbox"]');
+                            checkboxes.forEach(function (checkbox) {
+                                checkbox.checked = true;
+                            });
+
+                            // Initialize selected items and total price
+                            updateSelectedItems();
+                        });
+                    </script>
+>>>>>>> 1e88762 (init)
                 </body>
 
                 </html>

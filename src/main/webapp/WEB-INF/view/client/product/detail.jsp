@@ -74,8 +74,12 @@
                                         <div class="col-lg-6">
                                             <div class="border rounded">
                                                 <a href="#">
+<<<<<<< HEAD
                                                     <img src="/images/product/${product.image}"
                                                         class="img-fluid rounded" alt="Image">
+=======
+                                                    <img src="${product.image}" class="img-fluid rounded" alt="Image">
+>>>>>>> 1e88762 (init)
                                                 </a>
                                             </div>
                                         </div>
@@ -194,7 +198,40 @@
                                     </div>
                                 </div>
                             </div>
+<<<<<<< HEAD
 
+=======
+                            <h1 class="fw-bold mb-0">Sản phẩm liên quan</h1>
+                            <div class="vesitable">
+                                <div class="owl-carousel vegetable-carousel justify-content-center">
+
+                                    <div class="border border-primary rounded position-relative vesitable-item">
+                                        <div class="vesitable-img">
+                                            <img src="${product.image}" class="img-fluid w-100 rounded-top" alt="">
+                                        </div>
+                                        <div class="text-white bg-primary px-3 py-1 rounded position-absolute"
+                                            style="top: 10px; right: 10px;">
+                                            Laptop</div>
+                                        <div class="p-4 pb-0 rounded-bottom text-truncate"
+                                            style="width: 270px; white-space: nowrap; overflow: hidden;">
+                                            <h4 style="font-size: 15px;">${product.name}</h4>
+                                            <p>${product.shortDesc}</p>
+                                            <p style="font-size: 15px; text-align: center; width: 100%;"
+                                                class="text-dark  fw-bold mb-3">
+                                                <fmt:formatNumber type="number" value="${product.price}" /> đ
+                                            </p>
+                                            <button data-product-id="${product.id}"
+                                                class="btnAddToCartHomepage mx-auto btn border d-flex justify-content-center border-secondary rounded-pill px-3 text-primary">
+                                                <i class="fa fa-shopping-bag me-2 text-primary"></i>
+                                                Add to cart
+                                            </button>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+>>>>>>> 1e88762 (init)
                         </div>
                     </div>
                     <!-- Single Product End -->

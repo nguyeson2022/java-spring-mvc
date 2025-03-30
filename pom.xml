@@ -14,6 +14,11 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>laptopshop</name>
 	<description>Demo project for Spring Boot</description>
+<<<<<<< HEAD
+=======
+ 	<!-- jar không hỗ trợ jsp :v -->
+	<packaging>war</packaging>
+>>>>>>> 1e88762 (init)
 	<properties>
 		<java.version>17</java.version>
 	</properties>
@@ -44,7 +49,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1e88762 (init)
 		<dependency>
 			<groupId>com.mysql</groupId>
 			<artifactId>mysql-connector-j</artifactId>
@@ -70,6 +78,7 @@
 			<artifactId>jakarta.servlet.jsp.jstl</artifactId>
 		</dependency>
 
+<<<<<<< HEAD
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -85,6 +94,30 @@
 			<artifactId>spring-session-jdbc</artifactId>
 		</dependency>
 
+=======
+		<dependency> 
+			<groupId>org.springframework.boot</groupId> 
+			<artifactId>spring-boot-starter-validation</artifactId> 
+		</dependency>
+
+		 <dependency>
+			<groupId>org.springframework.session</groupId>
+			<artifactId>spring-session-jdbc</artifactId>
+ 		 </dependency>
+
+		<dependency>
+			<groupId>org.hibernate.orm</groupId>
+			<artifactId>hibernate-jpamodelgen</artifactId>
+			<version>6.4.1.Final</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+		<groupId>org.glassfish.jaxb</groupId>
+		<artifactId>jaxb-runtime</artifactId>
+		<version>4.0.4</version>
+		</dependency>
+>>>>>>> 1e88762 (init)
 
 	</dependencies>
 

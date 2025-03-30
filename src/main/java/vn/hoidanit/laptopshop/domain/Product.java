@@ -1,5 +1,10 @@
 package vn.hoidanit.laptopshop.domain;
 
+<<<<<<< HEAD
+=======
+import java.io.Serializable;
+
+>>>>>>> 1e88762 (init)
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,7 +18,14 @@ import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "products")
+<<<<<<< HEAD
 public class Product {
+=======
+public class Product implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+>>>>>>> 1e88762 (init)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -25,12 +37,19 @@ public class Product {
     @NotNull
     @DecimalMin(value = "0", inclusive = false, message = "Price phải lớn hơn 0")
     private double price;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1e88762 (init)
     private String image;
 
     @NotNull
     @NotEmpty(message = "detailDesc không được để trống")
     @Column(columnDefinition = "MEDIUMTEXT")
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1e88762 (init)
     private String detailDesc;
 
     @NotNull
@@ -39,7 +58,12 @@ public class Product {
 
     @NotNull
     @Min(value = 1, message = "Số lượng cần lớn hơn hoặc bằng 1")
+<<<<<<< HEAD
     private long quantity;
+=======
+    private int quantity;
+
+>>>>>>> 1e88762 (init)
     private long sold;
     private String factory;
     private String target;
@@ -92,11 +116,19 @@ public class Product {
         this.shortDesc = shortDesc;
     }
 
+<<<<<<< HEAD
     public long getQuantity() {
         return quantity;
     }
 
     public void setQuantity(long quantity) {
+=======
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+>>>>>>> 1e88762 (init)
         this.quantity = quantity;
     }
 
